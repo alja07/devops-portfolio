@@ -1,0 +1,15 @@
+FROM nginx:alpine
+
+RUN apk add --no-cache gcc fcgi-dev libc-dev spawn-fcgi
+
+COPY mini-server.c /tmp/
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
+
+RUN cd /tmp && \
+    gcc -o /usr/local/bin/fcgi_server mini-server.c -lfcgi && \
+    rm /tmp/mini-server.c
+
+EXPOSE 81
+
+# Запускаем FastCGI в фоне и nginx на переднем плане
+CMD sh -c "spawn-fcgi -p 8080 -n /usr/local/bin/fcgi_server & exec nginx -g 'daemon off;'"

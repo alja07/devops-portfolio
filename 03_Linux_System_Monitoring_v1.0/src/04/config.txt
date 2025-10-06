@@ -1,0 +1,4 @@
+col1_color_bg=4
+col1_color_font=1
+col2_color_bg=3
+col2_color_font=6

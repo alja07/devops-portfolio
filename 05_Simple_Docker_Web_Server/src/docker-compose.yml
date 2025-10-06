@@ -1,0 +1,22 @@
+services:
+  fastcgi-app:
+    build: .
+    container_name: test-app
+    networks:
+      - app-network
+
+  nginx-proxy:
+    image: nginx:1.25-alpine
+    container_name: nginx-proxy
+    ports:
+      - "80:8080"
+    volumes:
+      - ./nginx-proxy.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - fastcgi-app
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

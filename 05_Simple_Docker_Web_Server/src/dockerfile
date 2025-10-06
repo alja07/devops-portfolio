@@ -1,0 +1,40 @@
+# Многостадийная сборка чтобы избежать ключей
+FROM alpine:3.19 as builder
+
+# Стадия сборки FastCGI
+RUN apk add --no-cache gcc fcgi-dev libc-dev
+COPY mini-server.c .
+RUN gcc -o /fcgi_server mini-server.c -lfcgi
+
+# Финальная стадия с чистым Alpine
+FROM alpine:3.19
+
+# Устанавливаем NGINX и зависимости ВКЛЮЧАЯ fcgi
+RUN apk add --no-cache nginx spawn-fcgi curl fcgi && \
+    # Создаем пользователя и группу
+    addgroup -g 1001 -S appuser && \
+    adduser -S -D -H -u 1001 -G appuser appuser && \
+    # Создаем необходимые директории
+    mkdir -p /var/run/nginx /var/log/nginx /var/cache/nginx /var/lib/nginx/tmp && \
+    chown -R appuser:appuser /var/run/nginx /var/log/nginx /var/cache/nginx /var/lib/nginx
+
+# Копируем скомпилированный FastCGI
+COPY --from=builder /fcgi_server /usr/local/bin/fcgi_server
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
+
+# Настраиваем права
+RUN chmod +x /usr/local/bin/fcgi_server && \
+    chown appuser:appuser /usr/local/bin/fcgi_server && \
+    chown -R appuser:appuser /etc/nginx
+
+EXPOSE 81
+
+# HEALTHCHECK - исправляем порт на 81
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+    CMD curl -f http://localhost:81/ || exit 1
+
+# Переключаемся на непривилегированного пользователя
+USER appuser
+
+# Запускаем приложение
+CMD sh -c "spawn-fcgi -p 8080 -f /usr/local/bin/fcgi_server & exec nginx -g 'daemon off;'"

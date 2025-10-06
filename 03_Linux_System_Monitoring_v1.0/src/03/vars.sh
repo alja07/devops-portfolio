@@ -1,0 +1,25 @@
+#!/bin/bash
+
+col1_color_bg=$1
+col1_color_font=$2
+col2_color_bg=$3
+col2_color_font=$4
+
+HOSTNAME=$(hostname)
+TIMEZONE=$(timedatectl show --property=Timezone --value)
+TIMEZONE_OFFSET=$(date +%z)
+USER=$(whoami)
+OS=$(uname)
+OS_VERSION=$(uname -r)
+DATE=$(date "+%d %B %Y г. %H:%M:%S")
+UPTIME=$(uptime -p)
+UPTIME_SEC=$(cut -d' ' -f1 /proc/uptime | cut -d'.' -f1)
+IP=$(hostname -I | awk '{print $1}' )
+MASK=$(ifconfig | grep -m1 inet | awk '{print $4}')
+GATEWAY=$(ip route | grep default | awk '{print $3}')
+RAM_TOTAL=$(free -m | grep -E -m1 "Mem|Память" | awk '{print $2}' | awk '{printf("%.3f", $1/1024)}')
+RAM_USED=$(free -m | grep -E -m1 "Mem|Память" | awk '{print $3}' | awk '{printf("%.3f", $1/1024)}')
+RAM_FREE=$(free -m | grep -E -m1 "Mem|Память" | awk '{print $4}' | awk '{printf("%.3f", $1/1024)}')
+SPACE_ROOT=$(df / | grep -m1 "/dev" | awk '{print $2}' | awk '{printf("%.2f", $1/1024)}')
+SPACE_ROOT_USED=$(df / | grep -m1 "/dev" | awk '{print $3}' | awk '{printf("%.2f", $1/1024)}')
+SPACE_ROOT_FREE=$(df / | grep -m1 "/dev" | awk '{printf $4}' | awk '{printf("%.2f", $1/1024)}')

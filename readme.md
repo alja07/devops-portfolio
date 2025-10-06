@@ -4,7 +4,7 @@
 
 **Портфолио начинающего DevOps-инженера с практическими проектами**
 
-[Проекты](#-проекты) • [Навыки](#-навыки) • [Опыт](#-опыт) • [Контакты](#-контакты)
+[Проекты](#-навигация-по-проектам) | [Контакты](#-контакты)
 
 </div>
 
@@ -12,9 +12,9 @@
 
 Начинающий DevOps-инженер. Имею практический опыт администрирования Linux-систем, настройки мониторинга и работы с контейнеризацией.
 
-## 📊 Навигация по проектам
+## <a id="-навигация-по-проектам"></a> 📊 Навигация по проектам
 
-### 1. [Linux Administration Basics](https://github.com/alja07/devops-portfolio/tree/main/01_Linux_Administration_Basics/src)
+### 1. [Linux Administration Basics](01_Linux_Administration_Basics/src)
 **Администрирование Linux-сервера с нуля**
 
 ```bash
@@ -27,7 +27,7 @@
 ```
 Технологии: `Linux` `Bash` `SSH` `systemd` `Networking`
 
-### 2. [Linux Networks](https://github.com/alja07/devops-portfolio/tree/main/02_Linux_Network/src)
+### 2. [Linux Networks](02_Linux_Network/src)
 **Сетевая инфраструктура и маршрутизация**
 
 ```bash
@@ -40,7 +40,7 @@
 ```
 Технологии: `Netplan` `iptables` `DHCP` `NAT` `traceroute`
 
-### 3. [Linux Monitoring v1.0](https://github.com/alja07/devops-portfolio/tree/main/03_Linux_System_Monitoring_v1.0/src)
+### 3. [Linux Monitoring v1.0](03_Linux_System_Monitoring_v1.0/src)
 **Bash-скрипты для системного мониторинга**
 ```bash
 # Ключевые навыки:
@@ -51,7 +51,7 @@
 ```
 Технологии: `Bash` `AWK` `System Monitoring`
 
-### 4. Linux Monitoring v2.0
+### [4. Linux Monitoring v2.0](04_Linux_System_Monitoring_v2.0)
 Профессиональный мониторинг с Prometheus и Grafana
 ```bash
 # Ключевые навыки:
@@ -63,7 +63,7 @@
 ```
 Технологии: `Prometheus` `Grafana` `GoAccess` `stress` `iperf3`
 
-### 5. Simple Docker Project
+### [5. Simple Docker Project](05_Simple_Docker_Web_Server)
 Полный цикл разработки и контейнеризации приложения
 ```bash
 # Ключевые навыки:
@@ -76,7 +76,8 @@
 Технологии: `Docker` `Docker Compose` `FastCGI` `Nginx` `Dockle`
 <hr>
 <div align="center">
-🤝 Контакты
+
+<a id="-контакты"></a>**🤝 Контакты**
 
 Телеграм: https://t.me/alyakidinova
 

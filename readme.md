@@ -51,7 +51,7 @@
 ```
 Технологии: `Bash` `AWK` `System Monitoring`
 
-### [4. Linux Monitoring v2.0](04_Linux_System_Monitoring_v2.0)
+### [4. Linux Monitoring v2.0](04_Linux_System_Monitoring_v2.0/src)
 Профессиональный мониторинг с Prometheus и Grafana
 ```bash
 # Ключевые навыки:
@@ -63,7 +63,7 @@
 ```
 Технологии: `Prometheus` `Grafana` `GoAccess` `stress` `iperf3`
 
-### [5. Simple Docker Project](05_Simple_Docker_Web_Server)
+### [5. Simple Docker Project](05_Simple_Docker_Web_Server/src)
 Полный цикл разработки и контейнеризации приложения
 ```bash
 # Ключевые навыки:
